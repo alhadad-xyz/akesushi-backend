@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const db = require("./app/config/db.conf");
 const cors = require("cors");
+const expressLayouts = require('express-ejs-layouts')
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -38,6 +39,8 @@ app.use((req, res, next) => {
 
 app.use("/", express.static(__dirname + "/public"));
 
+app.use(expressLayouts)
+app.set('layout', './layouts/full-width')
 app.set("view engine", "ejs");
 
 app.use("", require("./routes/routes"));

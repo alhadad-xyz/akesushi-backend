@@ -1,0 +1,55 @@
+<div class="mb-3">
+  <label for="name" class="form-label">Name :</label>
+  <input
+    type="name"
+    class="form-control"
+    <% if (typeof product !== 'undefined') { %>
+      value="<%= product.name %>"
+    <% } %>
+    name="name"
+    id="name"
+  />
+</div>
+<div class="mb-3">
+  <label for="subtitle" class="form-label">Subtitle :</label>
+  <input
+    type="subtitle"
+    class="form-control"
+    <% if (typeof product !== 'undefined') { %>
+      value="<%= product.subtitle %>"
+    <% } %>
+    name="subtitle"
+    id="subtitle"
+  />
+</div>
+<div class="mb-3">
+  <label for="price" class="form-label">Price :</label>
+  <input
+    type="number"
+    class="form-control"
+    <% if (typeof product !== 'undefined') { %>
+      value="<%= product.price %>"
+    <% } %>
+    name="price"
+    id="price"
+  />
+</div>
+<div class="mb-3">
+  <label for="image" class="form-label">Image :</label>
+  <input type="file" class="form-control" name="image" id="image" />
+  <% if (typeof product !== 'undefined') { %>
+    <img
+      src="/images/uploads/product/<%= product.image %>"
+      width="100"
+      class="img-thumbnail mt-1"
+      alt="product image"
+    />
+  <input type="hidden" name="old_image" value="<%= product.image %>" />
+  <% } %>
+</div>
+<div class="mt-5 mb-3">
+  <a href="/products" class="btn btn-danger">Cancel</a>
+  <button type="submit" name="submit" class="btn btn-success ms-3">
+    Submit
+  </button>
+</div>

@@ -14,6 +14,10 @@ const productSchema = new Schema({
     type: Number,
     required: true
   },
+  status: {
+    type: Boolean,
+    required: true
+  },
   image: {
     type: String,
     required: true

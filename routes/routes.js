@@ -6,7 +6,7 @@ const APIProductController = require('../app/controllers/api/APIProduct.controll
 const productHelper = require('../app/helper/Product.helper')
 
 router.get('/', (req, res) => {
-  res.render('index', { title: "Home page" })
+  res.render('index', { title: "Dashboard", page: 'dashboard' })
 })
 
 // Routes Product
@@ -15,6 +15,7 @@ router.get('/product/create', productController.create)
 router.post('/product/store', productHelper.upload, productController.store)
 router.get('/product/edit/:id', productController.edit)
 router.post('/product/update/:id', productHelper.upload, productController.update)
+router.get('/product/publish/:id/:status', productController.publish)
 router.get('/product/delete/:id', productController.destroy)
 
 // Routes API Product

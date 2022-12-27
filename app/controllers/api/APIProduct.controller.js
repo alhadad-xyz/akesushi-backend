@@ -2,7 +2,7 @@ const Product = require("../../models/Product.model");
 
 function get(req, res, next) {
   try {
-    Product.find().exec((err, products) => {
+    Product.find({status:true}).exec((err, products) => {
       if (err) {
         res.json({ message: err.message });
       } else {
