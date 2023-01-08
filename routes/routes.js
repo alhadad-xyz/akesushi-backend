@@ -30,7 +30,9 @@ router.get('/transactions', transactionController.get)
 
 // Routes API Product
 router.get('/v1/products', APIProductController.get)
+router.get('/v1/products/show/:id', APIProductController.show)
 router.post('/v1/transactions/create', APITransactionController.create)
+router.get('/v1/transactions/show/:id', APITransactionController.show)
 router.post('/v1/transactions/paid', APITransactionController.paid)
 
 module.exports = router

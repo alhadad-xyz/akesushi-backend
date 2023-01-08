@@ -1,5 +1,6 @@
 require("dotenv").config();
 const Transaction = require("../../models/Transaction.model");
+const Util = require("../../helper/Util.helper");
 const Xendit = require('xendit-node');
 
 const x = new Xendit({
@@ -50,6 +51,8 @@ function create(req, res, next) {
         if (err) {
           res.json({ message: err.message, type: "danger" });
         } else {
+          const url = 'https://akesushi.netlify.app/invoice.html?invoice=' + externalID
+          Util.push_email(req.body.customer.email, req.body.invoice, url, account_number)
           res.json({ message: "Transaction created successfully" });
         }
       });
@@ -58,11 +61,26 @@ function create(req, res, next) {
       console.error(`VA creation failed with message: ${e.message}`);
     });
   } catch (err) {
-    console.error(`Error while getting products`, err.message);
+    console.error(`Error while creating transaction`, err.message);
     next(err);
   }
 }
 
+function show(req, res, next) {
+  try {
+    let id = req.params.id;
+    Transaction.find({external_id:id}).exec((err, transaction) => {
+      if (err) {
+        res.json({ message: err.message });
+      } else {
+        res.json(transaction)
+      }
+    });
+  } catch (err) {
+    console.error(`Error while getting products`, err.message);
+    next(err);
+  }
+}
 
 function paid(req, res, next) {
   try {
@@ -74,12 +92,13 @@ function paid(req, res, next) {
       }
     })
   } catch (err) {
-    console.error(`Error while getting products`, err.message);
+    console.error(`Error while getting transaction`, err.message);
     next(err);
   }
 }
 
 module.exports = {
   create,
+  show,
   paid,
 };

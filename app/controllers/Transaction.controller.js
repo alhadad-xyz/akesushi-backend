@@ -1,4 +1,5 @@
 const Transaction = require("../models/Transaction.model");
+const Util = require("../../app/helper/Util.helper")
 const fs = require("fs");
 
 function get(req, res, next) {
@@ -11,6 +12,7 @@ function get(req, res, next) {
           title: "List Transaction",
           page: "transactions",
           transactions: transactions,
+          util: Util,
         });
       }
     });

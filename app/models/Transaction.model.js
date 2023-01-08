@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
-let Products = new Schema({ id: String, qty: Number }, { _id : false });
+let Products = new Schema({ id: String, title: String, description: String, price: Number, qty: Number }, { _id : false });
 
 const transactionSchema = new Schema({
   invoice: {
